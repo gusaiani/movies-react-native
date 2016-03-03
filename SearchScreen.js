@@ -309,3 +309,53 @@ var SearchScreen = React.createClass({
     );
   },
 });
+
+var NoMovies = React.createClass({
+  render: function() {
+    var text = '';
+    if (this.props.filter) {
+      text = `No results for "${this.props.filter}"`;
+    } else if (!this.props.isLoading) {
+      // If we're looking at the latest movies, aren't currently loading, and
+      // still have no results, show a message
+      text = 'No movies found';
+    }
+
+    return (
+      <View style={[styles.container, styles.centerText]}>
+        <Text style={styles.noMoviesText}>{text}</Text>
+      </View>
+    );
+  }
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  centerText: {
+    alignItems: 'center',
+  },
+  noMoviesText: {
+    marginTop: 80,
+    color: '#888888',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#eeeeee',
+  },
+  scrollSpinner: {
+    marginVertical: 20,
+  },
+  rowSeparator: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    height: 1,
+    marginLeft: 4,
+  },
+  rowSeparatorHide: {
+    opacity: 0.0,
+  },
+});
+
+module.exports = SearchScreen;
